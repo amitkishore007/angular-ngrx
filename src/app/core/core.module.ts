@@ -28,6 +28,6 @@ import { HomeComponent } from './home/home.component';
         AppRoutingModule,
         HeaderComponent
     ],
-    providers: [ShoppingListService, RecipeService, DataStorageService, AuthService, AuthGuard],
+    providers: [ShoppingListService, RecipeService, DataStorageService, AuthService],
 })
 export class CoreModule {}

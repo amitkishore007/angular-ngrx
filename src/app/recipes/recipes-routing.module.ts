@@ -18,13 +18,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    declarations: [],
+    declarations: [
+        
+    ],
     imports: [ 
         RouterModule.forChild(routes)
     ],
     exports: [
         RouterModule
     ],
-    providers: [],
+    providers: [AuthGuard],
 })
 export class RecipesRoutingModule {}
