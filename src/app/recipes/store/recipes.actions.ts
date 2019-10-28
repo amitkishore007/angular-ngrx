@@ -4,6 +4,7 @@ import { Action } from '@ngrx/store';
 
 export const FETCH_RECIPES = "[BACKEND] FETCH_RECIPES";
 export const ADD_RECIPE = "[BACKEND] ADD_RECIPE";
+export const ADD_RECIPES = "[BACKEND] ADD_RECIPES";
 export const SAVE_RECIPES = "[BACKEND] SAVE_RECIPES";
 export const DELETE_RECIPE = "[BACKEND] DELETE_RECIPE";
 export const SEND_TO_SHOPPING_LIST = "[BACKEND] SEND_TO_SHOPPING_LIST";
@@ -21,8 +22,6 @@ export class FetchRecipes implements Action {
 
 export class SaveRecipes implements Action {
     readonly type = SAVE_RECIPES;
-
-    constructor() {}
 }
 
 export class DeleteRecipe implements Action {
@@ -62,8 +61,14 @@ export class CompletedEditRecipe implements Action {
 
 export class AddRecipe implements Action {
     readonly type = ADD_RECIPE;
-    
+
     constructor(public payload: Recipe) {}
+}
+
+export class AddRecipes implements Action {
+    readonly type = ADD_RECIPES;
+
+    constructor(public payload: Recipe[]) {}
 }
 
 export type RecipesActions = FetchRecipes 
@@ -75,3 +80,4 @@ export type RecipesActions = FetchRecipes
                            | StartEditRecipe 
                            | CompletedEditRecipe
                            | AddRecipe
+                           | AddRecipes

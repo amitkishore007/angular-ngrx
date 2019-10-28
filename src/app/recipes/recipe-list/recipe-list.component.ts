@@ -7,6 +7,8 @@ import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { Subscription } from 'rxjs';
 
+import * as RecipesActions from '../store/recipes.actions';
+
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
@@ -23,6 +25,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.store.dispatch(new RecipesActions.FetchRecipes());
     this.subscription = this.store.select('recipes').subscribe((recipes:any) => {
       this.recipes = recipes.recipes;
     });

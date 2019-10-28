@@ -9,6 +9,12 @@ export function recipeReducer(state = initialState, action: RecipesAction.Recipe
                 ...state
             }
             break;
+        case RecipesAction.ADD_RECIPES:
+            return {
+                ...state,
+                recipes:[...action.payload]
+            }
+            break;
         case RecipesAction.SELECT_RECIPE:
             let recipe = state.recipes[action.payload];
             return {

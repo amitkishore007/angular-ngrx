@@ -1,3 +1,5 @@
+import { environment } from './../../environments/environment';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 
 import { Recipe } from './recipe.model';
@@ -27,16 +29,27 @@ export class RecipeService {
       ])
   ];
 
-  constructor(private slService: ShoppingListService) {}
+  constructor(private slService: ShoppingListService, private http: HttpClient) {}
 
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
     this.recipesChanged.next(this.recipes.slice());
   }
 
-  getRecipes() {
-    return this.recipes.slice();
+  saveRecipes(recipes: Recipe[]) {
+    const req = new HttpRequest('PUT', environment.firebase.databaseURL+'/recipes.json', recipes, { reportProgress: true });
+    return this.http.request(req);
   }
+
+  getRecipes() {
+    return this.http.get<Recipe[]>(environment.firebase.databaseURL+'/recipes.json', {
+      observe: 'body',
+      responseType: 'json'
+    });
+  }
+  // getRecipes() {
+  //   return this.recipes.slice();
+  // }
 
   getRecipe(index: number) {
     return this.recipes[index];

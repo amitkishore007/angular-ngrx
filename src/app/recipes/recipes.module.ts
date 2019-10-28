@@ -1,3 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
+import { RecipeEffects } from './store/recipes.effects';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { SharedModule } from './../shared/shared.module';
 import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.component';
@@ -24,8 +27,10 @@ import { recipeReducer } from './store/recipes.reducer';
     imports: [ CommonModule,
                RecipesRoutingModule,
                ReactiveFormsModule,
+               HttpClientModule,
                SharedModule,
-               StoreModule.forFeature('recipes', recipeReducer)
+               StoreModule.forFeature('recipes', recipeReducer),
+               EffectsModule.forFeature([RecipeEffects])
              ],
     exports: [],
     providers: [],
