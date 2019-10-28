@@ -1,9 +1,5 @@
 import { Ingredient } from 'src/app/shared/ingredient.model';
 
-// export interface State {
-//     shoppingList: ShoppingListState
-// }
-
 export interface State {
     ingredients: Ingredient[],
     editedIngredient: Ingredient,

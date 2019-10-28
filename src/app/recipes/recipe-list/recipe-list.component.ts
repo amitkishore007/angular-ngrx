@@ -1,3 +1,5 @@
+import * as RecipeState from './../store/recipes.state';
+import { Store } from '@ngrx/store';
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -16,17 +18,14 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   constructor(private recipeService: RecipeService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private store: Store<RecipeState.State>) {
   }
 
   ngOnInit() {
-    this.subscription = this.recipeService.recipesChanged
-      .subscribe(
-        (recipes: Recipe[]) => {
-          this.recipes = recipes;
-        }
-      );
-    this.recipes = this.recipeService.getRecipes();
+    this.subscription = this.store.select('recipes').subscribe((recipes:any) => {
+      this.recipes = recipes.recipes;
+    });
   }
 
   onNewRecipe() {

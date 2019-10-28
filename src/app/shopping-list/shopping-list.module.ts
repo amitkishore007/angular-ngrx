@@ -1,3 +1,4 @@
+import { ShoppingListRoutingModule } from './shopping-list-routing.module';
 import { FormsModule } from '@angular/forms';
 import { ShoppingEditComponent } from './shopping-edit/shopping-edit.component';
 import { ShoppingListComponent } from './shopping-list.component';
@@ -9,7 +10,7 @@ import { CommonModule } from '@angular/common';
         ShoppingListComponent,
         ShoppingEditComponent
     ],
-    imports: [ CommonModule, FormsModule ],
+    imports: [ CommonModule, FormsModule, ShoppingListRoutingModule ],
     exports: [],
     providers: [],
 })
