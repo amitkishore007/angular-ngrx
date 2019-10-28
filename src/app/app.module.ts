@@ -9,6 +9,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { reducers } from './store/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffect } from './auth/store/auth.effects';
 
 @NgModule({
   declarations: [
@@ -19,8 +21,9 @@ import { reducers } from './store/app.reducer';
     HttpClientModule,
     CoreModule,
     StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([AuthEffect]),
     StoreRouterConnectingModule.forRoot(),
-    !environment.production ? StoreDevtoolsModule.instrument({maxAge:25}):[] 
+    !environment.production ? StoreDevtoolsModule.instrument({maxAge:25}):[],
   ],
   providers: [],
   bootstrap: [AppComponent]

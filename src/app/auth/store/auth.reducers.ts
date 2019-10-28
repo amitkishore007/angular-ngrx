@@ -4,6 +4,14 @@ import * as authActions from './auth.actions';
 
 export function authReducer(state = authState.initialState, action: authActions.authActions) {
     switch (action.type) {
+
+        case (authActions.TRY_SIGNIN): 
+        case (authActions.TRY_SIGNUP): 
+            return {
+                ...state
+            }
+            break;
+
         case (authActions.SIGNUP):
         case (authActions.SIGNIN):
             return {
@@ -22,11 +30,11 @@ export function authReducer(state = authState.initialState, action: authActions.
         case authActions.SET_TOKEN:
             return {
                 ...state,
-                token: action.payload,
-                authenticated: true
+                token: action.payload
             }
             break;
         default:
+            return state;
             break;
     }
 }
